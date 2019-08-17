@@ -134,8 +134,8 @@
           //只要动态生成元素，就会把原来的数据展示出来
           let li = document.createElement("li");
           li.innerHTML = '<p class="content">' + e.content + '</p>' +
-      '<span class="del">删除</span>' +
-      '<span class="time">' + e.time + '</span>';
+      '<span class="del" data-id="' + e.id + '">删除</span>' +
+      '<span class="time">' + e.id + '</span>';
           ul.appendChild(li);
         });
         /* 因为此时没有数据我们先实现新增 */
@@ -191,6 +191,15 @@
       //判断的是元素身上是否包含某个类名
       //就是点击了删除
       ul.removeChild(e.target.parentNode);
+      //不仅要删除li，还要删除本地存储中对应的数据
+      /*删除数据的常见的方法：给数据设置一个不会重复的id，
+      根据id到数组里面查找
+      需要在生成数据的时候，先给id，
+      然后在我们生成结构的时候，把id储存到删除这个span的自定义属性身上
+      */
+     //获取点击的删除身上的id
+
+     //把本地储存中的对应的数据移除
     }
   })
       </script>
