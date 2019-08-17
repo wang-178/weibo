@@ -181,6 +181,18 @@
         let json = JSON.stringify(datas);
         localStorage.setItem("wbshuju", json);
       }
+      //实现删除
+  // 所有的元素都是动态生成的，有可能一开始获取不到的，需要使用委托的方式实现删除
+  ul.addEventListener('click',function(e){
+    // 判断点击的是否是span,并且内容是删除 -自己做
+    // if(e.target){
+    // if(e.target.className === 'del') // 这样写有一定的风险 如果它类名不仅仅只有一个，这样就不行了
+    if(e.target.classList.contains('del')){
+      //判断的是元素身上是否包含某个类名
+      //就是点击了删除
+      ul.removeChild(e.target.parentNode);
+    }
+  })
       </script>
     </html>
   </body>
