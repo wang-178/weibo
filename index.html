@@ -150,6 +150,8 @@
           }
           //生成一个时间
           let time = kits.formatDate();
+          //生成一个id
+          let id =kits.getId();
           //生成新的li
           let li = document.createElement("li");
          li.innerHTML = '<p class="content">' + content + '</p>' +
@@ -198,8 +200,19 @@
       然后在我们生成结构的时候，把id储存到删除这个span的自定义属性身上
       */
      //获取点击的删除身上的id
-
+      let id=e.target.dataset.id;
      //把本地储存中的对应的数据移除
+     //先从datas数组里面把对应的数据，删除
+     datas.forEach(function(e,i){
+       if(e.id==id){
+         //数组.splice（从哪里开始删除，删除多少个）
+         datas.splice(i,1);
+       }
+     })
+    console.log(datas);
+    //把新的datas覆盖回本地储存里面
+    let jion=JSON.stringify(datas)
+    localStorage.setItem('wbshuju',json)
     }
   })
       </script>
