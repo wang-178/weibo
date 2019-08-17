@@ -1,113 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  
-  <!DOCTYPE html>
-  <html>
-  
   <head>
-    <meta charset="UTF-8">
-    <title>微博发布效果</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-  
-      .weibo {
-        width: 600px;
-        border: 1px solid #ccc;
-  
-        margin: 100px auto;
-        padding: 10px;
-  
-      }
-  
-      .weibo-text {
-        width: 590px;
-        height: 140px;
-        padding: 5px;
-        border: 1px solid #ccc;
-        outline: none;
-        resize: none;
-      }
-  
-      .weibo-text:focus {
-        border-color: #f60;
-      }
-  
-      .weibo-btn {
-        width: 80px;
-        height: 30px;
-        background-color: #f90;
-        color: #fff;
-        border: 0 none;
-        margin-top: 5px;
-        border-radius: 3px;
-        cursor: pointer;
-        outline: 0 none;
-      }
-  
-      .weibo-list {
-        padding-top: 10px;
-      }
-  
-      .weibo-list li {
-        font-size: 14px;
-        line-height: 30px;
-        border-bottom: 1px dotted #ccc;
-        overflow: hidden;
-      }
-  
-      .weibo-list li p {
-        float: left;
-      }
-  
-      .weibo-list li span {
-        float: right;
-        cursor: pointer;
-      }
-  
-      .weibo-list li input {
-        height: 24px;
-        line-height: 24px;
-        width: 300px;
-        font-size: 14px;
-        border: 0 none;
-      }
-  
-      .time {
-        margin-right: 10px;
-        font-style: normal;
-        float: right;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
   </head>
-  
   <body>
-    <div class="weibo">
-      <textarea class="weibo-text"></textarea>
-      <input class="weibo-btn" value="发布" type="button">
-      <ul class="weibo-list">
-        <!-- <li>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="UTF-8" />
+        <title>微博发布效果</title>
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+          }
+
+          .weibo {
+            width: 600px;
+            border: 1px solid #ccc;
+
+            margin: 100px auto;
+            padding: 10px;
+          }
+
+          .weibo-text {
+            width: 590px;
+            height: 140px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            resize: none;
+          }
+
+          .weibo-text:focus {
+            border-color: #f60;
+          }
+
+          .weibo-btn {
+            width: 80px;
+            height: 30px;
+            background-color: #f90;
+            color: #fff;
+            border: 0 none;
+            margin-top: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            outline: 0 none;
+          }
+
+          .weibo-list {
+            padding-top: 10px;
+          }
+
+          .weibo-list li {
+            font-size: 14px;
+            line-height: 30px;
+            border-bottom: 1px dotted #ccc;
+            overflow: hidden;
+          }
+
+          .weibo-list li p {
+            float: left;
+          }
+
+          .weibo-list li span {
+            float: right;
+            cursor: pointer;
+          }
+
+          .weibo-list li input {
+            height: 24px;
+            line-height: 24px;
+            width: 300px;
+            font-size: 14px;
+            border: 0 none;
+          }
+
+          .time {
+            margin-right: 10px;
+            font-style: normal;
+            float: right;
+          }
+        </style>
+      </head>
+
+      <body>
+        <div class="weibo">
+          <textarea class="weibo-text"></textarea>
+          <input class="weibo-btn" value="发布" type="button" />
+          <ul class="weibo-list">
+            <!-- <li>
               <p class="content">快来收了这九款用上就停不下来的应用吧！！</p>
               <span class="time"></span>
               <span class="del">删除</span>
           </li> -->
-      </ul>
-    </div>
-  </body>
-  <!-- 一定要在我们使用之前引入 -->
-  <script src="./kits.js"></script>
-  <script>
-    /* 
+          </ul>
+        </div>
+      </body>
+      <!-- 一定要在我们使用之前引入 -->
+      <script src="./kits.js"></script>
+      <script>
+        /* 
       效果：
         1.点击发布，还是可以生成一条新的li
         2.点击删除，也是可以删掉某条li
@@ -119,36 +116,72 @@
           当我们点击新增，把新增的数据，更新到存储的数据里面
           当我们点击删除，把对应的数据从存储的地方，移除
     */
-    /* 
+        /* 
     需要在一开始的时候，就把本地存储里面的数据，读取出来，把原本的旧的数据加载在页面中 
     */
-  
-    // 获取元素
-    let btn=document.querySelector('.weibo-btn');
-    let text=document.querySelector('.weibo-text');
-    let ul=document.querySelector('.weibo-list');
-     /* 因为此时没有数据我们先实现新增 */
-  // 定义一个数组，使用这个数组存储我们要新增的数据 
-   var datas=[];
-   //注册点击事件
-   btn.onclick=function(){
-   //获取文本域的内容
-   let content=text.value;
-   if(content.trim().length===0){
-     alert('请输入文字，再发布');
-     return
-   }
-   //生成一个时间
-   let time=kits.formatDate();
-   //生成新的li
-   let li=document.createElement('li')
-   li.innerHTML='<p class="content"'+content+'</p>'+
-    '<span class="del">删除</span>'+
-    '<span class="time">'+time+'</span>'
-    //插入到ul的最前面
-    ul.insertBefore(li,ul.children[0]);
-    //把文本域清空
-    text.value="";
-   }
-</script>
+
+        // 获取元素
+        let btn = document.querySelector(".weibo-btn");
+        let text = document.querySelector(".weibo-text");
+        let ul = document.querySelector(".weibo-list");
+        //把数据从本地存储中读取
+        let datas = localStorage.getItem("wbshuju");
+        datas = JSON.parse(datas);
+        datas = datas || [];
+        //需要在一开始的是根据旧的数据把数据展示
+        datas.forEach(function(e, i) {
+          //forEach的作用是遍历前面的这个数组
+          //只要动态生成元素，就会把原来的数据展示出来
+          let li = document.createElement("li");
+          li.innerHTML = '<p class="content">' + e.content + '</p>' +
+      '<span class="del">删除</span>' +
+      '<span class="time">' + e.time + '</span>';
+          ul.appendChild(li);
+        });
+        /* 因为此时没有数据我们先实现新增 */
+        // 定义一个数组，使用这个数组存储我们要新增的数据 - 注意，如果有了旧数据，应该直接读取旧的数据了
+        //注册点击事件
+        btn.onclick = function() {
+          //获取文本域的内容
+          let content = text.value;
+          if (content.trim().length === 0) {
+            alert("请输入文字，再发布");
+            return;
+          }
+          //生成一个时间
+          let time = kits.formatDate();
+          //生成新的li
+          let li = document.createElement("li");
+         li.innerHTML = '<p class="content">' + content + '</p>' +
+      '<span class="del">删除</span>' +
+      '<span class="time">' + time + '</span>';
+       
+          //插入到ul的最前面
+          ul.insertBefore(li, ul.children[0]);
+          //把文本域清空
+          text.value = "";
+        
+        /*
+      点击之后，为了我们刷新之后还是有数据，把这些数据存储起来
+      有多条数据 —— 使用数组的方式存储 - 需要在外面先定义一个数组
+      数组里面方法每条数据
+      每条数据包含至少两个东西
+        - 内容
+        - 发布的时间
+        就是用对象进行存储
+        {content:'内容',time:'发布时间'}
+        每次点击就是一个新的对象，放到数组里面，把数组存到本地存储里面即可
+    */
+        let obj = {
+          content: content,
+          time: time
+        };
+        //把这个数据放到数组里面
+        datas.unshift(obj);
+        let json = JSON.stringify(datas);
+        localStorage.setItem("wbshuju", json);
+      }
+      </script>
+    </html>
+  </body>
 </html>
