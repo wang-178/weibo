@@ -46,3 +46,30 @@ kits.getId = function(){
   let id = time + '' + r;
   return id;
 }
+//随机一个获取rgb格式的颜色
+function random(n, m) {
+  return Math.floor(Math.random() * (m - n + 1) + n);
+}
+
+function randomColor() {
+  var r = random(0, 255);
+  var g = random(0, 255);
+  var b = random(0, 255);
+  return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+//获取一个随机的十六进制的颜色
+kits.getColor=function() {
+  //定义字符串变量colorValue存放可以构成十六进制颜色值的值
+  var colorValue = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+  //以","为分隔符，将colorValue字符串分割为字符数组["0","1",...,"f"]
+  var colorArray = colorValue.split(",");
+  var color = "#";//定义一个存放十六进制颜色值的字符串变量，先将#存放进去
+  //使用for循环语句生成剩余的六位十六进制值
+  for (var i = 0; i < 6; i++) {
+    //colorArray[Math.floor(Math.random()*16)]随机取出
+    // 由16个元素组成的colorArray的某一个值，然后将其加在color中，
+    //字符串相加后，得出的仍是字符串
+    color += colorArray[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
