@@ -73,3 +73,48 @@ kits.getColor=function() {
   }
   return color;
 }
+// 时间
+btn.onclick = function () {
+  // 获取文本域的内容
+  let content = text.value;
+  if (content.trim().length === 0) {
+    alert('请输入文字，再发布');
+    return;
+  }
+  // 生成一个时间
+  let time = kits.formatDate();
+  // 生成一个id
+  let id = kits.getId();
+  // console.log(time);
+  // 生成新的li
+  let li = document.createElement('li');
+  li.innerHTML = '<p class="content">' + content + '</p>' +
+    '<span class="del" data-id="'+ id +'">删除</span>' +
+    '<span class="time">' + time + '</span>';
+  // 插入到ul的最前面
+  ul.insertBefore(li, ul.children[0]);
+  // 把文本域清空
+  text.value = "";
+
+  /* 
+    点击之后，为了我们刷新之后还是有数据，把这些数据存储起来
+      有多条数据 —— 使用数组的方式存储 - 需要在外面先定义一个数组
+      数组里面方法每条数据
+        每条数据包含至少两个东西
+          - 内容
+          - 发布的时间
+          就是用对象进行存储
+          {content:'内容',time:'发布时间'}
+      每次点击就是一个新的对象，放到数组里面，把数组存到本地存储里面即可
+  */
+  let obj = {
+    // 需要一个id以便在删除的时候能够找到这条数据
+    id: id,
+    content: content,
+    time: time
+  }
+  datas.unshift(obj);
+  // 把数组存储到localStorage里面
+  let json = JSON.stringify(datas);
+  localStorage.setItem('wbshuju', json);
+}
